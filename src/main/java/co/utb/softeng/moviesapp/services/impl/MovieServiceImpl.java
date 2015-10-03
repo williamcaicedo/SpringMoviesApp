@@ -25,7 +25,7 @@ public class MovieServiceImpl implements MovieService{
     private MovieDAO movieDAO;
 
     public List<Movie> getAllMovies() {
-        return movieDAO.getAllMovies();
+        return movieDAO.getAllMovies(false);
     }
 
     public Movie getMovieById(Long id) {
@@ -42,6 +42,16 @@ public class MovieServiceImpl implements MovieService{
 
     public void deleteMovie(Long id) {
         movieDAO.delete(id);
+    }
+
+    @Override
+    public List<Movie> getMovieByActorName(String actorName) {
+        return movieDAO.getByActorName(actorName);
+    }
+
+    @Override
+    public List<Movie> getMovieByActorId(Long actorId) {
+        return movieDAO.getByActorId(actorId);
     }
     
 }

@@ -39,9 +39,19 @@ public class MoviesController {
         return movieService.getMovieById(id);
     }
     
-    @RequestMapping(value = "/by-name/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
     public @ResponseBody List<Movie> getMovieByName(@PathVariable String name) {
         return movieService.getMovieByName(name);
+    }
+    
+    @RequestMapping(value = "/actor/{actorId}", method = RequestMethod.GET)
+    public @ResponseBody List<Movie> getMovieByActorName(@PathVariable Long actorId) {
+        return movieService.getMovieByActorId(actorId);
+    }
+    
+    @RequestMapping(value = "/actor/name/{name}", method = RequestMethod.GET)
+    public @ResponseBody List<Movie> getMovieByActorName(@PathVariable String name) {
+        return movieService.getMovieByActorName(name);
     }
     
     @RequestMapping(value = "/", method = RequestMethod.PUT)

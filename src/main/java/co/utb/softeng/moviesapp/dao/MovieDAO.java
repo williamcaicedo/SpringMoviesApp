@@ -14,9 +14,11 @@ import java.util.List;
  */
 public interface MovieDAO {
     
-    public List<Movie> getAllMovies();
+    public List<Movie> getAllMovies(boolean includeActors);
     public Movie getById(Long id);
     public List<Movie> getByName(String name);
+    public List<Movie> getByActorId(Long actorId);
+    public List<Movie> getByActorName(String actorName);
     public void saveOrUpdate(Movie movie);
     public void delete(Long id);
     

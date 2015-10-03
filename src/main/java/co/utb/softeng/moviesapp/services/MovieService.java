@@ -17,6 +17,8 @@ public interface MovieService {
     public List<Movie> getAllMovies();
     public Movie getMovieById(Long id);
     public List<Movie> getMovieByName(String name);
+    public List<Movie> getMovieByActorId(Long actorId);
+    public List<Movie> getMovieByActorName(String actorName);
     public void saveOrUpdateMovie(Movie movie);
     public void deleteMovie(Long id);
     
