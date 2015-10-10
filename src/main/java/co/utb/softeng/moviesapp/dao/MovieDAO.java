@@ -5,6 +5,7 @@
  */
 package co.utb.softeng.moviesapp.dao;
 
+import co.utb.softeng.moviesapp.entities.Actor;
 import co.utb.softeng.moviesapp.entities.Movie;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public interface MovieDAO {
     public List<Movie> getByName(String name);
     public List<Movie> getByActorId(Long actorId);
     public List<Movie> getByActorName(String actorName);
+    public Movie addActorsToMovie(List<Actor> actors, Long movieId);
     public void saveOrUpdate(Movie movie);
     public void delete(Long id);
     

@@ -6,6 +6,7 @@
 package co.utb.softeng.moviesapp.dao.impl;
 
 import co.utb.softeng.moviesapp.dao.MovieDAO;
+import co.utb.softeng.moviesapp.entities.Actor;
 import co.utb.softeng.moviesapp.entities.Movie;
 import java.util.List;
 import javax.persistence.FetchType;
@@ -98,6 +99,25 @@ public class MovieDAOImpl implements MovieDAO{
                 .createCriteria("actors")
                 .add(Restrictions.idEq(actorId))
                 .list();
+    }
+
+    @Override
+    public Movie addActorsToMovie(List<Actor> actors, Long movieId) {
+        Session session = getSession();
+        Movie movie = (Movie)session.get(Movie.class, movieId);
+        
+        //Lado dominante es Movie
+        movie.getActors().addAll(actors);
+        session.saveOrUpdate(movie);
+        
+        
+//      Si el lado dominante fuese Actor
+//      for(Actor a : actors) {
+//            Actor actor = (Actor)session.merge(a);
+//            actor.getMovies().add(movie);
+//            
+//        }
+        return movie;
     }
     
     

@@ -34,7 +34,7 @@ public class Movie implements Serializable {
     private String director;
     private double rating;
     private String genre;
-    @ManyToMany(mappedBy="movies")
+    @ManyToMany
     private List<Actor> actors;
 
     public Long getId() {

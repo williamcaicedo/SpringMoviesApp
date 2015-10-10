@@ -12,7 +12,7 @@ $.ajax({
     var html = '';
     _.each(response, function (movie) {
 
-        html += "<div class='movie'>Name: " + movie.name + "<br/>";
+        html += "<div class='movie'>Name: <a href='movies/"+movie.id+"'>" + movie.name + "</a><br/>";
         html += "Director: " + movie.director + "<br/>";
         html += "Genre: " + movie.genre + "</div>";
 

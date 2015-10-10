@@ -6,6 +6,7 @@
 package co.utb.softeng.moviesapp.services.impl;
 
 import co.utb.softeng.moviesapp.dao.MovieDAO;
+import co.utb.softeng.moviesapp.entities.Actor;
 import co.utb.softeng.moviesapp.entities.Movie;
 import co.utb.softeng.moviesapp.services.MovieService;
 import java.util.List;
@@ -52,6 +53,11 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public List<Movie> getMovieByActorId(Long actorId) {
         return movieDAO.getByActorId(actorId);
+    }
+
+    @Override
+    public Movie addActorsToMovie(List<Actor> actors, Long movieId) {
+        return movieDAO.addActorsToMovie(actors, movieId);
     }
     
 }

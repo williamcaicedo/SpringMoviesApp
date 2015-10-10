@@ -31,7 +31,7 @@ public class Actor implements Serializable {
     private String gender;
     @Temporal(value=TemporalType.DATE)
     private Date birthdate;
-    @ManyToMany
+    @ManyToMany(mappedBy="actors")
     private List<Movie> movies;
 
     public Long getId() {

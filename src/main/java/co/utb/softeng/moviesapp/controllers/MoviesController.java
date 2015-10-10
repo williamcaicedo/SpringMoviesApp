@@ -5,6 +5,7 @@
  */
 package co.utb.softeng.moviesapp.controllers;
 
+import co.utb.softeng.moviesapp.entities.Actor;
 import co.utb.softeng.moviesapp.entities.Movie;
 import co.utb.softeng.moviesapp.services.MovieService;
 import java.util.List;
@@ -45,7 +46,7 @@ public class MoviesController {
     }
     
     @RequestMapping(value = "/actor/{actorId}", method = RequestMethod.GET)
-    public @ResponseBody List<Movie> getMovieByActorName(@PathVariable Long actorId) {
+    public @ResponseBody List<Movie> getMovieByActorId(@PathVariable Long actorId) {
         return movieService.getMovieByActorId(actorId);
     }
     
@@ -64,6 +65,12 @@ public class MoviesController {
     public @ResponseBody Movie updateMovie(@RequestBody Movie movie) {
         movieService.saveOrUpdateMovie(movie);
         return movie;          
+    }
+    
+    @RequestMapping(value="/{id}/actors", method = RequestMethod.POST)
+    public @ResponseBody Movie addActorsToMovie(@RequestBody List<Actor> actors, 
+            @PathVariable Long movieId) {
+        return movieService.addActorsToMovie(actors, movieId);
     }
     
     @RequestMapping(value = "/",method = RequestMethod.DELETE) 
