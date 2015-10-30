@@ -6,7 +6,8 @@
 
 var controllerModule = angular.module('springMoviesAppControllers');
 
-controllerModule.controller('movieController', ['$scope','movieService', '$routeParams', '$location', '_',
+controllerModule.controller('movieController', ['$scope','movieService', 
+    '$routeParams', '$location', '_',
     function($scope, movieService, $routeParams, $location, _) {
         $scope.getMovie = function(movieId) {
             movieService.getMovieById(movieId).then(function(response) {

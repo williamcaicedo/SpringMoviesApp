@@ -6,43 +6,21 @@
 
 var controllerModule = angular.module('springMoviesAppControllers');
 
-controllerModule.controller('homeController', ['$scope', '$rootScope', '$uibModal', 'movieService', '_', 
-    function ($scope, $rootScope, $uibModal, movieService, _) {
+controllerModule.controller('homeController', ['$scope', 'movieService', '_', 
+    function ($scope, movieService, _) {
         $scope.movies = [];
 
         $scope.getAllMovies = function () {
-            movieService.getAllMovies().then(function (response) {
+            var promise = movieService.getAllMovies();
+            promise.then(function (response) {
                 $scope.movies = response.data;
-            });
-        };
-
-
-        $rootScope.addMovie = function () {
-            $uibModal.open({
-                templateUrl: 'addMovieModal',
-                controller: 'homeController.addMovieModal',
-                size: 'md'
-            }).result.then(function (m) {
-                movieService.createMovie(m);
-                $scope.getAllMovies();
             });
         };
         
         $scope.getAllMovies();
     }]);
 
-controllerModule.controller('homeController.addMovieModal', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
-        $scope.movie = {};
 
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-
-        $scope.ok = function () {
-
-            $modalInstance.close($scope.movie);
-        };
-    }]);
 
 
 
