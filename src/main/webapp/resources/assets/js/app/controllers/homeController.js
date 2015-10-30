@@ -6,8 +6,8 @@
 
 var controllerModule = angular.module('springMoviesAppControllers');
 
-controllerModule.controller('homeController', ['$scope', '$uibModal', 'movieService', '_', 
-    function ($scope, $uibModal, movieService, _) {
+controllerModule.controller('homeController', ['$scope', '$rootScope', '$uibModal', 'movieService', '_', 
+    function ($scope, $rootScope, $uibModal, movieService, _) {
         $scope.movies = [];
 
         $scope.getAllMovies = function () {
@@ -17,7 +17,7 @@ controllerModule.controller('homeController', ['$scope', '$uibModal', 'movieServ
         };
 
 
-        $scope.addMovie = function () {
+        $rootScope.addMovie = function () {
             $uibModal.open({
                 templateUrl: 'addMovieModal',
                 controller: 'homeController.addMovieModal',

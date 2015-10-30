@@ -14,3 +14,18 @@ var springMoviesApp = angular.module("springMoviesApp", [
     'lodash'
 ]);
 
+
+springMoviesApp.config(['$routeProvider', 
+    function($routeProvider) {
+        $routeProvider.
+                when('/movie/:movieId', {
+                    templateUrl: 'assets/js/app/views/movie.html',
+                    controller: 'movieController'
+                }).when('/', {
+                    templateUrl: 'assets/js/app/views/home.html',
+                    controller: 'homeController'
+                }).otherwise({
+                    redirectTo: '/'
+                });
+        
+}]);

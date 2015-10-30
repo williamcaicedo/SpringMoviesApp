@@ -3,16 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- var servicesModule = angular.module('springMoviesAppServices');
- 
- servicesModule.factory('movieService', ['$http', function($http) {
+var servicesModule = angular.module('springMoviesAppServices');
+
+servicesModule.factory('movieService', ['$http', function ($http) {
+        
         return {
-            getAllMovies: function() {
-                return $http.get('http://localhost:8080/SpringMoviesApp/movie/');
+            apiUrl: apiUrl,
+            getAllMovies: function () {
+                return $http.get(this.apiUrl+'movie/');
             },
-            createMovie: function(movie) {
-                return $http.put('http://localhost:8080/SpringMoviesApp/movie/', movie);
+            getMovieById: function (movieId) {
+                return $http.get(this.apiUrl+'movie/'+movieId);
+            },
+            createMovie: function (movie) {
+                return $http.put(this.apiUrl+'movie/', movie);
             }
         };
-}]);
+    }]);
 
