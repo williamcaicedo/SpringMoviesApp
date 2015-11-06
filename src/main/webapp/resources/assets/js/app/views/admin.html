@@ -1,0 +1,178 @@
+<div class="panel">
+    <div class="panel-body">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Admin <small>Add movies or actors</small></h1>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                
+                <uib-tabset>
+                    <uib-tab>
+                        <uib-tab-heading><i class="mdi-action-theaters"></i> Movies</uib-tab-heading>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <button class="btn btn-primary btn-xs" ng-click="addMovie()">Add Movie</button>
+                            </div>
+                            <div class="panel-body">
+                                <div ui-grid="{data: movies}" style="width:100%;height:500px"></div>
+                            </div>
+                        </div>
+                        
+                    </uib-tab>
+                    <uib-tab>
+                        <uib-tab-heading><i class="mdi-action-perm-identity"></i> Actors</uib-tab-heading>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <button class="btn btn-primary btn-xs" ng-click="addActor()">Add Actor</button>
+                            </div>
+                            <div class="panel-body">
+                                <div ui-grid="{data: actors}" style="width:100%;height:500px"></div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    
+                </uib-tabset>
+                
+                
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="addMovieModal">
+    <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel();" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Add a movie</h4>
+    </div>
+    <div class="modal-body">
+    <form name="movieForm" novalidate>
+
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="name" class="control-label">Name: </label>
+    <input id="name" class="form-control" type="text" ng-model="movie.name" required/>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="director" class="control-label">Director: </label>
+    <input id="director" class="form-control" type="text" ng-model="movie.director" required/>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="genre" class="control-label">Genre: </label>
+    <input id="genre" class="form-control" type="text" ng-model="movie.genre" required/>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="income" class="control-label">Gross Income: </label>
+    <input id="income" class="form-control" type="number" ng-model="movie.grossIncome" required/>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="rating" class="control-label">Rating: </label>
+    <input id="rating" class="form-control" type="number" ng-model="movie.rating" required/>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="releaseDate" class="control-label">Release Date: </label>
+    <input id="releaseDate" class="form-control" type="date" ng-model="movie.releaseDate" required/>
+    </div>
+    </div>
+    </div>
+
+
+    </form>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-disabled="movieForm.$invalid" ng-click="ok()">Add</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="addActorModal">
+    <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel();" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Add an actor</h4>
+    </div>
+    <div class="modal-body">
+    <div class="modal-body">
+        <form name="actorForm" class="my-form" novalidate>
+                    
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="firstName" class="control-label">First Name</label>
+                                <input ng-model="actor.firstName" type="text" class="form-control" id="firstName" required>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="lastName" class="control-label">Last Name</label>
+                                <input ng-model="actor.lastName" type="text" class="form-control" id="lastName" required>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="gender" class="control-label">Gender</label>
+                                <select id="gender" class="form-control" ng-model="actor.gender" required>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+                
+                        <!--div class="col-md-6">
+                            <div class="form-group">
+                                <label for="actorPhoto" class="control-label">Photo</label>
+                                <input ng-model="actor.photo" fileread="photo" type="file" class="form-control" id="actorPhoto">
+                            </div>
+                        </div-->
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-md-6">
+                        <label for="birth" class="control-label">Birth Date</label>
+                        <input id="birth" class="form-control" type="date" ng-model="actor.birthDate" required/>
+                            
+                        </div>
+                    </div>
+            
+                    
+                    
+                </form>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-disabled="movieForm.$invalid" ng-click="ok()">Add</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

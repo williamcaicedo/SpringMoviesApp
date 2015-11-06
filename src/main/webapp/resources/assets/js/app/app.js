@@ -8,17 +8,22 @@
 var springMoviesApp = angular.module("springMoviesApp", [
     'ngRoute',
     'ui.bootstrap',
+    'ui.grid',
     'springMoviesAppServices',
     'springMoviesAppControllers',
     'currencyMask',
     'lodash'
+    
 ]);
 
 
 springMoviesApp.config(['$routeProvider', 
     function($routeProvider) {
         $routeProvider.
-                when('/movie/:movieId', {
+                when('/admin', {
+                    templateUrl: 'assets/js/app/views/admin.html',
+                    controller: 'adminController'
+                }).when('/movie/:movieId', {
                     templateUrl: 'assets/js/app/views/movie.html',
                     controller: 'movieController'
                 }).when('/', {
