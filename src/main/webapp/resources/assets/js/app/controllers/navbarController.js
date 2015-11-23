@@ -6,9 +6,37 @@
 
 var controllerModule = angular.module('springMoviesAppControllers');
 
-controllerModule.controller('navbarController', ['$scope', '$uibModal', '$location', 'movieService', 'actorService',
-    function ($scope, $uibModal, $location, movieService, actorService) {
+controllerModule.controller('navbarController', ['$scope', '$rootScope', '$location', 'authService',
+    function ($scope, $rootScope, $location, authService) {
+
+        $scope.user = {
+            userName: "",
+            password: ""
+        };
         
+        $scope.login = function() {
+            $location.path('/login');
+        };
+
+        $scope.logout = function() {
+            authService.logout();
+            $rootScope.loggedIn = false;
+            $location.path('/');
+        };
+
+
+        authService.login({}).then(function (response) {
+
+            if (response.success) {
+                $rootScope.loggedIn = true;
+            } else {
+                $rootScope.loggedIn = false;
+
+            }
+        });
+        
+        
+
     }]);
 
 

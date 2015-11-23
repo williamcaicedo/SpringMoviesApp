@@ -27,18 +27,11 @@ and open the template in the editor.
                 <a class="navbar-brand" href="#/">Spring MoviesApp</a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#/">Home</a></li>
-                    <li class="active"><a href="#/admin">Admin</a></li>
-
-                    <!--li class="dropdown">
-                        <a href="" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Actions <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="" ng-click="addMovie()">Add Movie</a></li>
-                            <li class="divider"></li>
-                            <li><a href="" ng-click="addActor()">Add Actor</a></li>
-                        </ul>
-                    </li-->
+                    <li><a href="#/admin">Admin</a></li>
+                    <li ng-show="loggedIn"><a href="" ng-click="logout()">Logout</a></li>
+                    <li ng-show="!loggedIn"><a href="" ng-click="login()">Login</a></li>
                 </ul>
                 <form class="navbar-form navbar-left">
                     <input type="text" class="form-control col-lg-8" placeholder="Search">
@@ -83,8 +76,10 @@ and open the template in the editor.
 <script src="assets/js/app/moduleRegistration.js"></script>
 <script src="assets/js/app/services/movieService.js"></script>
 <script src="assets/js/app/services/actorService.js"></script>
+<script src="assets/js/app/services/authService.js"></script>
 <script src="assets/js/app/controllers/homeController.js"></script>
 <script src="assets/js/app/controllers/movieController.js"></script>
 <script src="assets/js/app/controllers/navbarController.js"></script>
 <script src="assets/js/app/controllers/adminController.js"></script>
+<script src="assets/js/app/controllers/loginController.js"></script>
 <script src="assets/js/app/app.js"></script>

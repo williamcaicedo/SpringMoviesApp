@@ -10,6 +10,7 @@ import co.utb.softeng.moviesapp.entities.Movie;
 import co.utb.softeng.moviesapp.services.MovieService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,10 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/movie")
+//@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 public class MoviesController {
     
     @Autowired
     MovieService movieService;
+    
     
     
     @RequestMapping(value={"/",""}, method = RequestMethod.GET)
@@ -55,24 +58,30 @@ public class MoviesController {
         return movieService.getMovieByActorName(name);
     }
     
+    
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public @ResponseBody Movie createMovie(@RequestBody Movie movie) {
         movieService.saveOrUpdateMovie(movie);
         return movie;
     }
     
+    
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/",method = RequestMethod.POST) 
     public @ResponseBody Movie updateMovie(@RequestBody Movie movie) {
         movieService.saveOrUpdateMovie(movie);
         return movie;          
     }
     
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value="/{id}/actors", method = RequestMethod.POST)
     public @ResponseBody Movie addActorsToMovie(@RequestBody List<Actor> actors, 
             @PathVariable Long movieId) {
         return movieService.addActorsToMovie(actors, movieId);
     }
     
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/",method = RequestMethod.DELETE) 
     public @ResponseBody Movie deleteMovie(@RequestBody Movie movie) {
         movieService.deleteMovie(movie.getId());

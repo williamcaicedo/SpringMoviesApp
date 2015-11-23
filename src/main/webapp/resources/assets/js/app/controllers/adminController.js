@@ -5,24 +5,32 @@
  */
 var controllerModule = angular.module('springMoviesAppControllers');
 
-controllerModule.controller('adminController', ['$scope', '$uibModal', 'movieService', 
+controllerModule.controller('adminController', ['$scope', '$uibModal', '$location', 'movieService', 'authService',
     'actorService', '_',
-    function ($scope, $uibModal, movieService, actorService, _) {
+    function ($scope, $uibModal, $location, movieService, authService, actorService, _) {
+
+//        authService.login().then(function (response) {
+//
+//            if (!response.data.name) {
+//                $location.path("/");
+//            }
+//        });
+        
         $scope.movies = [];
         $scope.actors = [];
 
         $scope.getAllMovies = function () {
             movieService.getAllMovies()
-                .then(function (response) {
-                    $scope.movies = response.data;
-                });
+                    .then(function (response) {
+                        $scope.movies = response.data;
+                    });
         };
 
         $scope.getAllActors = function () {
             actorService.getAllActors()
-                .then(function (response) {
-                    $scope.actors = response.data;
-                });
+                    .then(function (response) {
+                        $scope.actors = response.data;
+                    });
         };
 
         $scope.addMovie = function () {
@@ -32,9 +40,9 @@ controllerModule.controller('adminController', ['$scope', '$uibModal', 'movieSer
                 size: 'md'
             }).result.then(function (m) {
                 movieService.createMovie(m)
-                    .then(function (response) {
-                        $scope.getAllMovies();
-                    });
+                        .then(function (response) {
+                            $scope.getAllMovies();
+                        });
             });
         };
         $scope.addActor = function () {
@@ -44,9 +52,9 @@ controllerModule.controller('adminController', ['$scope', '$uibModal', 'movieSer
                 size: 'md'
             }).result.then(function (a) {
                 actorService.createActor(a)
-                    .then(function (response) {
-                        $scope.getAllActors();
-                    });
+                        .then(function (response) {
+                            $scope.getAllActors();
+                        });
             });
         };
 
