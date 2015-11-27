@@ -25,9 +25,9 @@ controllerModule.controller('navbarController', ['$scope', '$rootScope', '$locat
         };
 
 
-        authService.login({}).then(function (response) {
+        authService.isUserLoggedIn().then(function (response) {
 
-            if (response.success) {
+            if (response) {
                 $rootScope.loggedIn = true;
             } else {
                 $rootScope.loggedIn = false;

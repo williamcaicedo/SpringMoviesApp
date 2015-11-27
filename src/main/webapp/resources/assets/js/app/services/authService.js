@@ -36,8 +36,9 @@ servicesModule.factory('authService', ['$http', '$q', function ($http, $q) {
                 if (this._isLoggedIn) {
                     deferred.resolve(true);
                 } else {
-                    this.login().then(function (response) {
-                        if (response.data.name)
+                    $http.get(this.apiUrl + 'user/isLoggedIn')
+                            .then(function (response) {
+                        if (response.data)
                             deferred.resolve(true);
                         else
                             deferred.reject(false);
